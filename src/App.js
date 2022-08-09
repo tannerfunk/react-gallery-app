@@ -45,23 +45,19 @@ class App extends Component{
             this.setState({
               cats: responseData.photos.photo
             });
-            console.log(responseData.photos.photo)
           } else if (query === 'dogs'){
             this.setState({
               dogs: responseData.photos.photo
             });
-            console.log(responseData.photos.photo)
           } else if (query === 'birds'){
             this.setState({
               birds: responseData.photos.photo
             });
-            console.log(responseData.photos.photo)
           } else {
             this.setState({ 
               pics: responseData.photos.photo,
               query: query
              });
-             console.log(responseData.photos.photo)
           }
             
         })
@@ -69,6 +65,7 @@ class App extends Component{
             console.log('Error fetching and parsing data', error);
         });
   }
+
 
   render() {
     return (
@@ -78,11 +75,12 @@ class App extends Component{
         <SearchForm onSearch={this.performSearch} />
         <Nav /> 
         <Switch>
-          <Route exact path="/" render={ () => <PhotoContainer data={this.state.pics}  /> } />
-          <Route path="/cats" render={ () => <PhotoContainer data={this.state.cats} />} />
-          <Route path="/dogs" render={ () => <PhotoContainer data={this.state.dogs}  />} />
-          <Route path="/birds" render={ () => <PhotoContainer data={this.state.birds}  />} />
-          <Route path="/:query" render={ () => <PhotoContainer data={this.state.pics} query={this.state.query}  />} />
+          <Route exact path="/" render={ () => <PhotoContainer data={this.state.pics} query={this.state.query} /> } />
+          <Route path="/cats" render={ () => <PhotoContainer data={this.state.cats} query={this.state.query} />} />
+          <Route path="/dogs" render={ () => <PhotoContainer data={this.state.dogs} query={this.state.query} />} />
+          <Route path="/birds" render={ () => <PhotoContainer data={this.state.birds} query={this.state.query} />} />
+          <Route path="/:query" render={()=> <PhotoContainer data={this.state.pics} query={this.state.query} performSearch={this.performSearch} />} />
+          {/* <Route exact path="/search/:query" render={ () => <PhotoContainer data={this.state.pics}  />} /> */}
           <Route exact path="/*" render={() => NotFound } />
         </Switch>
           

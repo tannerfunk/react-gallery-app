@@ -1,9 +1,18 @@
 import React from 'react';
 import Photo from './Photo';
+import {useParams} from 'react-router-dom';
 
 const PhotoContainer = (props) => {
     const results = props.data;
     let pics;
+
+    const { query } = useParams();
+
+    console.log(query);
+
+    if (props.query !== query){
+        props.performSearch(query);
+    } 
 
 
     pics = results.map(pic =>
