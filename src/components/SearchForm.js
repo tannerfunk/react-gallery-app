@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
  class SearchForm extends Component {
-
+// setting the stage.. I mean state! 
     state = {
         searchText: ''
     }
-
+//using state to handle the changing of the text
     onSearchChange = e => {
         this.setState({ searchText: e.target.value });
     }
-
+//using state to handle the SUBMITTING this also puts the search query into the search bar up top
     handleSubmit = e => {
         let searchPath = `/${this.state.searchText}`;
         e.preventDefault();
